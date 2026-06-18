@@ -1,87 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harmonic AI Brochure</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adamstown East & the CDI Overlay — Frederick County, MD</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #E24B4A; --red-bg: #FCEBEB; --red-text: #A32D2D;
+    --amber: #BA7517; --amber-bg: #FAEEDA; --amber-text: #854F0B;
+    --blue: #378ADD; --blue-bg: #E6F1FB; --blue-text: #185FA5;
+    --green: #639922; --green-bg: #EAF3DE; --green-text: #3B6D11;
+    --teal: #1D9E75; --teal-bg: #E1F5EE; --teal-text: #085041;
+    --gray-bg: #F5F5F3; --border: #E0DED8; --border-strong: #C8C6C0;
+    --text: #1a1a18; --text2: #4a4a47; --text3: #7a7a76;
+    --radius: 10px; --radius-lg: 16px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  body { font-family: var(--font); background: #fff; color: var(--text); line-height: 1.6; }
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
 
-  <style>
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    body {
-      background: linear-gradient(-45deg, 
-        #4A90E2, /* Bluish */
-        #ff8a80, /* Lighter Reddish */
-        #94e073, /* Lighter Green */
-        #FFFACD  /* Soft Yellow */
-      );
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-  </style>
+  /* NAV BAR */
+  .topnav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; z-index: 100; }
+  .topnav-title { font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer; }
+  .topnav-links { display: flex; gap: 6px; }
+  .topnav-links button { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: #fff; color: var(--text2); cursor: pointer; transition: all 0.15s; font-family: var(--font); }
+  .topnav-links button:hover, .topnav-links button.active { background: var(--text); color: #fff; border-color: var(--text); }
 
+  /* LAYOUT */
+  .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* HERO */
+  .hero { padding: 2.5rem 0 2rem; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
+  .hero h1 { font-size: 32px; font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1rem; }
+  .hero p { font-size: 16px; color: var(--text2); line-height: 1.7; max-width: 580px; }
+  .hero-meta { display: flex; gap: 16px; margin-top: 1.25rem; flex-wrap: wrap; }
+  .hero-meta span { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+
+  /* BIG BUTTONS */
+  .hub-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 2rem 0; }
+  .hub-btn { border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; cursor: pointer; text-align: left; background: #fff; transition: all 0.15s; font-family: var(--font); }
+  .hub-btn:hover { border-color: var(--text); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .hub-btn.county { border-left: 4px solid var(--red); }
+  .hub-btn.city { border-left: 4px solid var(--blue); }
+  .hub-btn .btn-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .hub-btn.county .btn-label { color: var(--red); }
+  .hub-btn.city .btn-label { color: var(--blue); }
+  .hub-btn h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .hub-btn p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .hub-btn .arrow { font-size: 18px; margin-top: 10px; color: var(--text3); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+  /* SECTION HEADERS */
+  .section { margin-bottom: 2.5rem; scroll-margin-top: 60px; }
+  .section-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .section h2 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 0.875rem; }
+  .section p { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 0.75rem; }
+
+  /* SUMMARY BULLETS */
+  .summary-list { list-style: none; margin: 1rem 0; }
+  .summary-list li { display: flex; gap: 12px; padding: 0.875rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; font-size: 14px; color: var(--text2); line-height: 1.6; }
+  .summary-list li:last-child { border-bottom: none; }
+  .summary-list li .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .summary-list li strong { color: var(--text); }
+
+  /* STAT CARDS */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 1rem 0; }
+  .stat-card { background: var(--gray-bg); border-radius: var(--radius); padding: 1rem; }
+  .stat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+  .stat-val { font-size: 24px; font-weight: 700; color: var(--text); line-height: 1.1; }
+  .stat-sub { font-size: 12px; color: var(--text2); margin-top: 3px; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 24px; margin: 1rem 0; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .titem { position: relative; margin-bottom: 1.25rem; }
+  .titem::before { content: ''; position: absolute; left: -21px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--border-strong); }
+  .titem.red::before { border-color: var(--red); background: var(--red-bg); }
+  .titem.amber::before { border-color: var(--amber); background: var(--amber-bg); }
+  .titem.blue::before { border-color: var(--blue); background: var(--blue-bg); }
+  .titem.green::before { border-color: var(--green); background: var(--green-bg); }
+  .tdate { font-size: 11px; font-weight: 600; color: var(--text3); margin-bottom: 2px; }
+  .ttext { font-size: 14px; color: var(--text2); line-height: 1.6; }
+  .ttext strong { color: var(--text); font-weight: 600; }
+
+  /* ISSUE BOXES */
+  .issue-box { border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: var(--radius); padding: 1rem 1.125rem; margin-bottom: 10px; }
+  .issue-box.blue { border-left-color: var(--blue); }
+  .issue-box.amber { border-left-color: var(--amber); }
+  .issue-box.teal { border-left-color: var(--teal); }
+  .issue-box h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .issue-box p { font-size: 13px; color: var(--text2); line-height: 1.65; margin: 0; }
+
+  /* PILLS */
+  .pill { display: inline-flex; font-size: 11px; padding: 3px 10px; border-radius: 20px; margin: 3px 3px 3px 0; font-weight: 500; }
+  .pill.red { background: var(--red-bg); color: var(--red-text); }
+  .pill.blue { background: var(--blue-bg); color: var(--blue-text); }
+  .pill.amber { background: var(--amber-bg); color: var(--amber-text); }
+  .pill.green { background: var(--green-bg); color: var(--green-text); }
+
+  /* VOTE BAR */
+  .vote-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .vote-label { font-size: 13px; color: var(--text2); min-width: 72px; }
+  .vote-bar-wrap { flex: 1; height: 7px; background: var(--gray-bg); border-radius: 4px; overflow: hidden; }
+  .vote-bar { height: 100%; border-radius: 4px; }
+
+  /* PERMIT TABLE */
+  .permit-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 0.75rem; }
+  .permit-table th { text-align: left; font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .permit-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+  .permit-table td:first-child { color: var(--text); font-weight: 500; }
+  .badge { display: inline-flex; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .badge.issued { background: var(--green-bg); color: var(--green-text); }
+  .badge.pending { background: var(--amber-bg); color: var(--amber-text); }
+  .badge.missing { background: var(--red-bg); color: var(--red-text); }
+  .badge.progress { background: var(--blue-bg); color: var(--blue-text); }
+
+  /* WIP BOX */
+  .wip-box { border: 2px dashed #FAC775; border-radius: var(--radius-lg); padding: 1.25rem; margin-top: 1.5rem; }
+  .wip-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .wip-icon { font-size: 24px; }
+  .wip-header h3 { font-size: 15px; font-weight: 600; color: var(--text); }
+  .wip-header p { font-size: 12px; color: var(--amber-text); margin: 0; }
+  .proj-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; gap: 12px; }
+  .proj-row:last-child { border-bottom: none; }
+  .proj-label { color: var(--text2); }
+  .proj-right { text-align: right; }
+  .proj-val { font-weight: 600; color: var(--text); display: block; }
+  .proj-source { font-size: 11px; color: var(--text3); }
+
+  /* LINKS */
+  .links-list { list-style: none; }
+  .links-list li { margin-bottom: 10px; }
+  .links-list a { font-size: 13px; color: var(--blue); text-decoration: none; display: flex; align-items: flex-start; gap: 8px; }
+  .links-list a:hover { text-decoration: underline; }
+  .link-meta { display: block; font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* LOUDOUN CALLOUT */
+  .callout { background: var(--red-bg); border: 1px solid #F7C1C1; border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .callout h3 { font-size: 15px; font-weight: 600; color: var(--red-text); margin-bottom: 0.5rem; }
+  .callout p { font-size: 13px; color: #7a2020; line-height: 1.65; margin-bottom: 0.5rem; }
+  .callout p:last-child { margin: 0; }
+
+  /* ETHICS BOX */
+  .ethics-box { background: var(--amber-bg); border: 1px solid #FAC775; border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .ethics-box h3 { font-size: 15px; font-weight: 600; color: var(--amber-text); margin-bottom: 0.5rem; }
+  .ethics-box p { font-size: 13px; color: #5a3a08; line-height: 1.65; margin-bottom: 0.5rem; }
+  .ethics-box p:last-child { margin: 0; }
+
+  /* SYS ITEMS */
+  .sys-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.875rem 1rem; margin-bottom: 8px; display: flex; gap: 12px; }
+  .sys-num { font-size: 11px; font-weight: 700; color: var(--text3); min-width: 20px; padding-top: 2px; }
+  .sys-body h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .sys-body p { font-size: 13px; color: var(--text2); line-height: 1.6; margin: 0; }
+
+  /* BACK BUTTON */
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text2); cursor: pointer; padding: 6px 0; margin-bottom: 1rem; background: none; border: none; font-family: var(--font); }
+  .back-btn:hover { color: var(--text); }
+
+  /* PAGE FOOTER */
+  .page-footer { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 3rem; }
+  .page-footer p { font-size: 12px; color: var(--text3); }
+  .other-page-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; color: var(--text2); background: #fff; font-family: var(--font); margin-top: 0.75rem; transition: all 0.15s; }
+  .other-page-link:hover { border-color: var(--text); color: var(--text); }
+
+  @media (max-width: 560px) {
+    .hub-buttons { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 24px; }
+    .topnav-title { font-size: 12px; }
+  }
+</style>
 </head>
-<body class="min-h-screen p-10 font-sans">
-  <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=362,fit=crop,q=95/dOqy74DXzWu465Ep/logo-Y4LV8JPV3ZcOG7yL.png" alt="Harmonic Alpha Logo" class="mx-auto mb-8 w-64">
-  <h1 class="text-3xl font-bold mb-8 text-center" style="color: #ffffff;">
-AI for Sustainable Efficiency: Saving Energy, Maximizing Output.
-  </h1>
+<body>
 
-  <div class="bg-red-400 text-white rounded-2xl shadow-lg p-6 mb-8">
-    <h2 class="text-xl font-bold mb-4">⚡ BEFORE: The Grind</h2>
-    <ul class="space-y-2 text-sm">
-      <li>⏱ Time Spent: 3 hours sorting data, 2 hours fixing errors, 1 existential crisis/week</li>
-      <li>🔥 Energy Burned: Enough to power a small village—or at least your coffee addiction</li>
-      <li>🤯 Workflow Vibe: “Why is this taking so long?” “Did I miss a step?” “Who designed this UX—Kafka?”</li>
+<!-- TOP NAV -->
+<nav class="topnav">
+  <span class="topnav-title" onclick="showPage('hub')">⬡ Adamstown CDI</span>
+  <div class="topnav-links">
+    <button id="nav-hub" onclick="showPage('hub')">Overview</button>
+    <button id="nav-county" onclick="showPage('county')">County story</button>
+    <button id="nav-city" onclick="showPage('city')">City story</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ PAGE 1: HUB ═══ -->
+<div id="page-hub" class="page active">
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Frederick County, Maryland</div>
+    <h1>Adamstown East &amp; the Data Center Mess</h1>
+    <p>A developer-driven rezoning, a contaminated brownfield, a council vote two days before Christmas, an ethics fine, and an annexation loophole that nobody closed. Here's what happened and why it matters.</p>
+    <div class="hero-meta">
+      <span>📍 Adamstown, MD</span>
+      <span>📅 Updated June 2026</span>
+      <span>🔗 Share this page</span>
+    </div>
+  </div>
+
+  <div class="hub-buttons">
+    <button class="hub-btn county" onclick="showPage('county')">
+      <div class="btn-label">Part 1 — County</div>
+      <h3>The CDI Overlay Story</h3>
+      <p>How a 2021 approval became a 2025 political firestorm — zoning history, the controversial vote, systemic problems, and open permits.</p>
+      <div class="arrow">→</div>
+    </button>
+    <button class="hub-btn city" onclick="showPage('city')">
+      <div class="btn-label">Part 2 — City</div>
+      <h3>The City of Frederick Story</h3>
+      <p>The legal gap that never got fixed, an ethics-fined council member, Trammell Crow's Gas House Pike play, and the annexation loophole.</p>
+      <div class="arrow">→</div>
+    </button>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-eyebrow">The short version</div>
+    <h2>What you need to know</h2>
+    <ul class="summary-list">
+      <li><span class="dot" style="background:var(--green)"></span><div><strong>The data centers were approved in December 2021</strong> — four years before the CDI overlay existed. The overlay didn't enable them. It was created afterward to contain the next wave.</div></li>
+      <li><span class="dot" style="background:var(--amber)"></span><div><strong>There was no legal use category for "data center"</strong> in Frederick County or the City of Frederick before 2025. Developers pushed ad-hoc amendments into a legal vacuum.</div></li>
+      <li><span class="dot" style="background:var(--red)"></span><div><strong>The County Council voted 5-2 on December 23, 2025</strong> to approve a 2,615-acre CDI overlay — nearly double the Planning Commission's recommendation — with no public comment on the amended ordinance.</div></li>
+      <li><span class="dot" style="background:var(--red)"></span><div><strong>The site is a contaminated brownfield</strong> — the former Alcoa/Eastalco aluminum smelting plant. Air quality, water, and hazmat permits remain unconfirmed publicly.</div></li>
+      <li><span class="dot" style="background:var(--red)"></span><div><strong>A 100 MW data center consumes ~528,000 gallons of water per day.</strong> The Adamstown campus is projected at 300–500 MW. Frederick's water infrastructure was never planned for this.</div></li>
+      <li><span class="dot" style="background:var(--amber)"></span><div><strong>Loudoun County is the warning nobody heeded.</strong> Dominion Energy cannot meet Loudoun's data center power demand. Residential rates are going up 14%. Grid violations were anticipated in 2025. Frederick is importing the same model with none of the runway.</div></li>
+      <li><span class="dot" style="background:var(--blue)"></span><div><strong>The City of Frederick still has no legal data center use category.</strong> A proposed text amendment filed by Trammell Crow's attorney in December 2025 remains pending — and a city council member was fined for ethics violations tied to her role in drafting an identical amendment.</div></li>
+      <li><span class="dot" style="background:var(--blue)"></span><div><strong>The annexation loophole is real.</strong> A developer can seek annexation into the City of Frederick to escape the county's CDI-OZ boundary entirely — and the city and county have no unified framework to stop it.</div></li>
+      <li><span class="dot" style="background:var(--amber)"></span><div><strong>A referendum petition launched in January 2026.</strong> If voters approve it, the Council's 2,615-acre map is vetoed and the entire CDI-OZ process restarts from scratch.</div></li>
     </ul>
   </div>
 
-  <div class="bg-green-500 text-white rounded-2xl shadow-lg p-6 mb-8">
-    <h2 class="text-xl font-bold mb-4">🚀 AFTER: The Harmonic Alpha Effect™</h2>
-    <ul class="space-y-2 text-sm">
-      <li>⏳ Time Saved: 5% faster execution = 2 hours saved daily</li>
-      <li>💧 Energy Preserved: No more rage-refreshing dashboards</li>
-      <li>🖥 Your CPU stays cool — and so do you</li>
-      <li>✨ Workflow Vibe: “Wait, it’s done already?” “This feels illegal… but it’s just efficient.”</li>
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-eyebrow">By the numbers</div>
+    <h2>Key figures at a glance</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Original county eligible</div><div class="stat-val">~5,000</div><div class="stat-sub">acres before CDI-OZ</div></div>
+      <div class="stat-card"><div class="stat-label">Planning Commission rec.</div><div class="stat-val">1,311</div><div class="stat-sub">acres recommended</div></div>
+      <div class="stat-card"><div class="stat-label">Council adopted</div><div class="stat-val">2,615</div><div class="stat-sub">acres — Dec 23, 2025</div></div>
+      <div class="stat-card"><div class="stat-label">Overage vs. rec.</div><div class="stat-val">+99%</div><div class="stat-sub">nearly double</div></div>
+      <div class="stat-card"><div class="stat-label">Water/day per 100MW</div><div class="stat-val">528K</div><div class="stat-sub">gallons (evaporative)</div></div>
+      <div class="stat-card"><div class="stat-label">Loudoun rate hike</div><div class="stat-val">+14%</div><div class="stat-sub">residential, 2026</div></div>
+      <div class="stat-card"><div class="stat-label">Original approvals</div><div class="stat-val">Dec 2021</div><div class="stat-sub">4 yrs before overlay</div></div>
+      <div class="stat-card"><div class="stat-label">Nash ethics fine</div><div class="stat-val">$1,000</div><div class="stat-sub">May 2026, 2nd violation</div></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Built June 2026 · Frederick County civic advocacy · Sources in each section</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PAGE 2: COUNTY ═══ -->
+<div id="page-county" class="page">
+<div class="container">
+
+  <button class="back-btn" onclick="showPage('hub')">← Back to overview</button>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Part 1 — Frederick County</div>
+    <h1>The CDI Overlay Story</h1>
+    <p>How a 2021 approval became a 2025 political firestorm — and what the Loudoun County precedent tells us about where Frederick is headed.</p>
+  </div>
+
+  <div class="section" id="c-s1">
+    <div class="section-eyebrow">01 — Base zoning</div>
+    <h2>What Adamstown East was before</h2>
+    <p>The Eastalco site north of Adamstown is the former <strong>Alcoa/Eastalco aluminum smelting plant</strong>. Its base zoning carries <strong>Agricultural and Limited Industrial</strong> designations. A zoning overlay adds permitted uses on top — it doesn't replace base zoning rights.</p>
+    <p>There was no legal category for "data center" in Frederick County before 2025. The county had to create one from scratch — while projects were already under construction.</p>
+    <div style="margin-top:0.75rem">
+      <span class="pill blue">Agricultural (base)</span>
+      <span class="pill blue">Limited Industrial (base)</span>
+      <span class="pill amber">No data center use category pre-2025</span>
+      <span class="pill amber">Eastalco Community Growth Area</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s2">
+    <div class="section-eyebrow">02 — The buried fact</div>
+    <h2>Approvals came 4 years before the overlay</h2>
+    <p>The data centers under construction north of Adamstown received their preliminary plan and <strong>Adequate Public Facilities Ordinance (APFO) approvals in December 2021</strong> — years before any CDI framework existed. The overlay did not authorize them. It was created afterward to contain the next wave.</p>
+    <div class="timeline" style="margin-top:1rem">
+      <div class="titem green"><div class="tdate">December 2021</div><div class="ttext"><strong>Preliminary plan + APFO approved</strong> for Quantum Frederick / Catellus data center campus north of Adamstown. No CDI overlay exists.</div></div>
+      <div class="titem"><div class="tdate">December 2022</div><div class="ttext"><strong>Fitzwater sworn in</strong> as County Executive. No new Planning Commission data center approvals issued after this date.</div></div>
+      <div class="titem blue"><div class="tdate">May 6, 2025</div><div class="ttext"><strong>CDI-OZ announced</strong> — data center development to be limited to Eastalco area, less than 1% of county land.</div></div>
+      <div class="titem blue"><div class="tdate">July 9, 2025</div><div class="ttext"><strong>Planning Commission public hearing</strong> on Council Bill 25-09. Workshops follow July 16 and 23.</div></div>
+      <div class="titem amber"><div class="tdate">October 2025</div><div class="ttext"><strong>Planning Commission recommends</strong> limiting CDI-OZ to already-approved ~1,311 acres. Map forwarded to County Council.</div></div>
+      <div class="titem red"><div class="tdate">December 23, 2025</div><div class="ttext"><strong>Council votes 5-2</strong> for ~2,615-acre map — nearly double the recommendation — with no public comment on the amended ordinance. Two days before Christmas.</div></div>
+      <div class="titem red"><div class="tdate">January 2026</div><div class="ttext"><strong>Referendum committee forms.</strong> A successful referendum would veto the Council's map and restart the entire CDI-OZ process.</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s3">
+    <div class="section-eyebrow">03 — The vote</div>
+    <h2>December 23 — 5 to 2</h2>
+    <div class="vote-row"><span class="vote-label">Yes (5)</span><div class="vote-bar-wrap"><div class="vote-bar" style="width:71%;background:var(--red)"></div></div></div>
+    <div class="vote-row"><span class="vote-label">No (2)</span><div class="vote-bar-wrap"><div class="vote-bar" style="width:29%;background:var(--blue)"></div></div></div>
+    <p style="margin-top:0.75rem;font-size:14px;color:var(--text2)">McKay voted no over the 500-foot residential setback ("lousy public policy") and concerns about illegal contract zoning in the agricultural offset provision. Donald voted no saying the vast majority of his Adamstown constituents opposed the expansion.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s4">
+    <div class="section-eyebrow">04 — What was bypassed</div>
+    <h2>The controversy</h2>
+    <div class="issue-box"><h4>No public comment on the amended map</h4><p>The Council amended the Planning Commission's recommendation — nearly doubling acreage — and voted two days before Christmas with no public comment opportunity on the amended ordinance.</p></div>
+    <div class="issue-box"><h4>Overwhelming public opposition ignored</h4><p>The Sugarloaf Alliance and other groups documented overwhelming opposition. 5 of 7 Council members voted for the larger map anyway.</p></div>
+    <div class="issue-box"><h4>Contaminated brownfield — no disclosed monitoring</h4><p>The Eastalco/Alcoa site has legacy contamination from aluminum smelting. No federal or state agency proactively disclosed environmental monitoring data. MDE contacted — jurisdiction response: unclear.</p></div>
+    <div class="issue-box"><h4>500-foot residential setback</h4><p>The bill allows data centers adjacent to residential areas with only a 500-foot property line setback. Council member McKay called this "lousy public policy."</p></div>
+    <div class="issue-box"><h4>Possible illegal contract zoning</h4><p>The 5:1 agricultural offset provision (5 preserved acres per new acre converted) raised concerns it could constitute illegal contract zoning — trading a development right for an environmental concession beyond the county's legal authority.</p></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s5">
+    <div class="section-eyebrow">05 — The Loudoun warning</div>
+    <h2>What "the next Northern Virginia" actually looks like</h2>
+    <div class="callout">
+      <h3>⚠️ Frederick residents said they didn't want to be Loudoun County. Here's what Loudoun County became.</h3>
+      <p>Dominion Energy cannot meet the energy demands of data centers already approved in Loudoun. The utility proposed new 500 kV and 230 kV transmission lines through residential and commercial areas — and even those fall short. More lines will be needed.</p>
+      <p>Dominion proposed a <strong>14% residential rate increase in 2026</strong> citing data center growth. Using 2023 as a base, Loudoun could require 20–30 GW of power by 2028 due to AI demands alone — a load PJM and Dominion are unlikely to meet.</p>
+      <p>On March 18, 2025, Loudoun's Board of Supervisors voted 7-2 to end all "by right" data center development. They got there after 200 approved data centers and a grid in crisis. Frederick is being offered the same model at the start, not the end.</p>
+    </div>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat-card"><div class="stat-label">Water/day (100MW facility)</div><div class="stat-val">528K</div><div class="stat-sub">gallons (evaporative cooling)</div></div>
+      <div class="stat-card"><div class="stat-label">Loudoun water use (2023)</div><div class="stat-val">900M</div><div class="stat-sub">gallons — 200 data centers</div></div>
+      <div class="stat-card"><div class="stat-label">Adamstown campus estimate</div><div class="stat-val">300–500</div><div class="stat-sub">MW projected capacity</div></div>
+      <div class="stat-card"><div class="stat-label">Equivalence</div><div class="stat-val">1.5–2.6M</div><div class="stat-sub">gallons/day at full capacity</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s6">
+    <div class="section-eyebrow">06 — Root causes</div>
+    <h2>Why this became a mess — systemic problems</h2>
+    <div class="sys-item"><div class="sys-num">01</div><div class="sys-body"><h4>No existing zoning category</h4><p>No legal use classification for data centers existed. Developers pushed ad-hoc amendments into a legal vacuum rather than a planned framework.</p></div></div>
+    <div class="sys-item"><div class="sys-num">02</div><div class="sys-body"><h4>Reactive policymaking</h4><p>The county only began regulating data centers after hyperscale projects were already approved in December 2021. The overlay was built to contain a problem already in motion.</p></div></div>
+    <div class="sys-item"><div class="sys-num">03</div><div class="sys-body"><h4>Environmental contamination on a brownfield</h4><p>Legacy Alcoa contamination on the Eastalco site. Construction-related earthmoving and runoff risks at a brownfield. No proactive agency disclosure of monitoring data.</p></div></div>
+    <div class="sys-item"><div class="sys-num">04</div><div class="sys-body"><h4>Community backlash drove rushed policy</h4><p>Residents demanded limits to avoid "the next Northern Virginia." This pushed officials into restrictive decisions made under political pressure rather than deliberate planning.</p></div></div>
+    <div class="sys-item"><div class="sys-num">05</div><div class="sys-body"><h4>Over-concentration in one community</h4><p>All data center development limited to less than 1% of county land in a single location — Adamstown — concentrating all political pressure, land-use conflict, and infrastructure strain in one neighborhood.</p></div></div>
+    <div class="sys-item"><div class="sys-num">06</div><div class="sys-body"><h4>Infrastructure mismatch</h4><p>Hyperscale data centers need massive power, water, and fiber. Frederick's infrastructure was never planned for this. Nobody has publicly answered who pays for upgrades.</p></div></div>
+    <div class="sys-item"><div class="sys-num">07</div><div class="sys-body"><h4>Conflicting city vs. county frameworks</h4><p>The county created a CDI-OZ. The city had to separately create an LMC amendment. Two parallel regulatory tracks, inconsistent rules, and an annexation gap between them. See the City Story for details.</p></div></div>
+    <div class="sys-item"><div class="sys-num">08</div><div class="sys-body"><h4>Developer-driven rezoning requests</h4><p>Property owners submitted their own inclusion/exclusion requests for the overlay map. The Noffsinger family — who relocated livestock, horses, and family members based on expected approval — illustrates the human cost of this uncertainty.</p></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="c-s7">
+    <div class="section-eyebrow">07 — Permits 🚧</div>
+    <h2>Permit status — work in progress</h2>
+    <div class="wip-box">
+      <div class="wip-header">
+        <span class="wip-icon">🦺</span>
+        <div><h3>Status as of June 2026</h3><p>MD Environment contacted — agency response: jurisdiction unclear. State and federal permit picture unresolved.</p></div>
+      </div>
+      <table class="permit-table">
+        <thead><tr><th>Permit</th><th>Agency</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Preliminary plan + APFO</td><td>Frederick County Planning</td><td><span class="badge issued">Issued Dec 2021</span></td></tr>
+          <tr><td>Stormwater / grading</td><td>MDE</td><td><span class="badge pending">Unclear</span></td></tr>
+          <tr><td>Sediment &amp; erosion control</td><td>MDE / County</td><td><span class="badge pending">Unclear</span></td></tr>
+          <tr><td>Air quality (HAPs / NOx)</td><td>MDE Air &amp; Radiation</td><td><span class="badge missing">Not confirmed</span></td></tr>
+          <tr><td>Water appropriation</td><td>MDE Water Supply</td><td><span class="badge missing">Not confirmed</span></td></tr>
+          <tr><td>NPDES / discharge</td><td>EPA / MDE</td><td><span class="badge pending">Filed at state</span></td></tr>
+          <tr><td>Hazmat site assessment</td><td>MDE / EPA RCRA</td><td><span class="badge missing">Not confirmed</span></td></tr>
+          <tr><td>Building / construction</td><td>Frederick County DPS</td><td><span class="badge progress">In progress</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:1.25rem">
+        <div class="proj-row"><span class="proj-label">Electrical load (full campus)</span><div class="proj-right"><span class="proj-val">300–500 MW est.</span><span class="proj-source">Catellus letter to Council; Loudoun comparable campuses</span></div></div>
+        <div class="proj-row"><span class="proj-label">Daily water consumption</span><div class="proj-right"><span class="proj-val">1.5–2.6M gal/day</span><span class="proj-source">Industry benchmark: 528K gal/day per 100MW</span></div></div>
+        <div class="proj-row"><span class="proj-label">Air emissions (NOx, PM2.5)</span><div class="proj-right"><span class="proj-val">Not disclosed</span><span class="proj-source">MDE air permit not confirmed public</span></div></div>
+        <div class="proj-row"><span class="proj-label">Diesel generator backup capacity</span><div class="proj-right"><span class="proj-val">Not disclosed</span><span class="proj-source">Required for air quality permit — major HAP source</span></div></div>
+        <div class="proj-row"><span class="proj-label">Stormwater runoff volume</span><div class="proj-right"><span class="proj-val">Not disclosed</span><span class="proj-source">Contaminated site — sediment/erosion plan critical</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-eyebrow">Sources</div>
+    <h2>County story — primary sources</h2>
+    <ul class="links-list">
+      <li><a href="https://frederickcountymd.gov/9122/Data-Centers" target="_blank">↗ Frederick County official Data Centers page<span class="link-meta">Timeline, map, listening sessions — frederickcountymd.gov</span></a></li>
+      <li><a href="https://www.frederickcountymd.gov/DocumentCenter/View/358152/Frederick-County-Announces-Next-Steps-on-Critical-Digital-Infrastructure-Overlay-Zone-111225" target="_blank">↗ County Executive press release — Nov. 12, 2025<span class="link-meta">CDI-OZ next steps announcement</span></a></li>
+      <li><a href="https://www.sugarloaf-alliance.com/01-14-26-overturn-the-overlay-zone-vote" target="_blank">↗ Sugarloaf Alliance — Overturn the Overlay Zone Vote (Jan. 14, 2026)<span class="link-meta">Community opposition and referendum details</span></a></li>
+      <li><a href="https://www.wypr.org/wypr-news/2025-12-24/frederick-county-council-passes-map-for-data-center-development" target="_blank">↗ WYPR — Council passes CDI map (Dec. 24, 2025)<span class="link-meta">Vote breakdown, Catellus letter, council statements</span></a></li>
+      <li><a href="https://www.wypr.org/wypr-news/2025-10-23/frederick-county-planning-commission-wants-limits-data-center-development" target="_blank">↗ WYPR — Planning Commission recommendation (Oct. 23, 2025)<span class="link-meta">1,311-acre recommendation and public testimony</span></a></li>
+      <li><a href="https://baltimorefishbowl.com/stories/a-new-data-center-alley-rising-west-of-baltimore/" target="_blank">↗ Baltimore Fishbowl — "A New Data Center Alley Rising West of Baltimore"<span class="link-meta">Regional context and Adamstown growth corridor</span></a></li>
+      <li><a href="https://www.pecva.org/region/loudoun/loudoun-proposes-changes-to-get-a-handle-on-data-center-development/" target="_blank">↗ Piedmont Environmental Council — Loudoun data center grid strain<span class="link-meta">The Northern Virginia warning in detail</span></a></li>
     </ul>
   </div>
 
-  <div class="bg-yellow-200 text-gray-800 rounded-2xl shadow-lg p-6 mb-8">
-    <h2 class="text-xl font-bold mb-4">💡 The 5% Rule: Micro-Tweaks, Macro Gains</h2>
-    <ul class="space-y-2 text-sm">
-      <li>• 14 smart interactions/day</li>
-      <li>• Each delivers ~5% lift</li>
-      <li>• Compounded = 50%+ efficiency boost</li>
-      <li>• No platform overhaul. Just precision tuning.</li>
+  <div class="page-footer">
+    <p>Part 1 of 2 — County Story</p>
+    <button class="other-page-link" onclick="showPage('city')">Read Part 2: The City of Frederick Story →</button>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PAGE 3: CITY ═══ -->
+<div id="page-city" class="page">
+<div class="container">
+
+  <button class="back-btn" onclick="showPage('hub')">← Back to overview</button>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Part 2 — City of Frederick</div>
+    <h1>The City Story</h1>
+    <p>A legal gap that went unfixed for three years. An ethics-fined council member. A national developer with a backup plan. And an annexation loophole the county and city have no unified framework to close.</p>
+  </div>
+
+  <div class="section" id="ci-s1">
+    <div class="section-eyebrow">01 — The 2022 legal gap</div>
+    <h2>Data centers were already unpermitted in 2022 — nothing was done</h2>
+    <p>In 2022 a city planning official determined that data centers did not fit any existing use category in city code — and formally recommended a text amendment to fix it. No amendment was passed. The City Council did nothing.</p>
+    <p>The result: for three years, the City of Frederick operated with no legal framework for data centers whatsoever — while the county's Eastalco campus was already under construction a few miles away, and developers were quietly assembling land inside city limits.</p>
+    <div class="issue-box amber"><h4>The 2022 ruling</h4><p>City planning staff concluded data centers were "establishments primarily engaged in providing infrastructure for hosting or data processing services" — a category that didn't match any permitted use. The staff memo recommended a text amendment. The Council tabled it. Three years passed.</p></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="ci-s2">
+    <div class="section-eyebrow">02 — Katie Nash</div>
+    <h2>The ethics violation at the center of it</h2>
+    <div class="ethics-box">
+      <h3>⚠️ Ethics fine — May 2026 — $1,000 — second violation in four years</h3>
+      <p>City Council member Katie Nash, who served as Council President for most of 2025, had been working on a draft text amendment to define data centers as a permitted use in city code — the fix the 2022 staff memo had recommended.</p>
+      <p>Nash withdrew her draft amendment. In December 2025, national developer Trammell Crow filed a text amendment through attorney Bruce Dean that was <strong>described as identical to Nash's August submission.</strong></p>
+      <p>The problem: Nash was simultaneously working as a <strong>paid lobbyist for Vistra Corp.</strong>, a national energy company — while sitting on the City Council and shaping data center policy. Energy generation and data center development are deeply connected industries; data centers are among the largest electricity consumers in the country.</p>
+      <p>Nash's defense: "It's not the same industry. It never occurred to me there's a conflict." The Frederick City Ethics Commission disagreed and issued a $1,000 fine on May 11, 2026 — her second ethics violation, following a 2022 ruling for using her position to lobby on behalf of a firefighters union client.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="ci-s3">
+    <div class="section-eyebrow">03 — Trammell Crow</div>
+    <h2>Gas House Pike and the 231-acre play</h2>
+    <p>National developer <strong>Trammell Crow</strong>, through land use attorney Bruce Dean, filed a text amendment to the city's Land Management Code on December 11, 2025 — the same week the County Council was voting on the CDI-OZ map.</p>
+    <div class="issue-box blue"><h4>What the proposed LMC amendment defines</h4><p>The amendment would create "Critical Digital Infrastructure" and "Critical Digital Infrastructure Substations" as legal use categories in city code for the first time. It would limit data centers to parcels of 75 acres or larger in M1 (light industrial) and M2 (heavy industrial) zones only — reducing eligible locations within city limits to four known parcels.</p></div>
+    <div class="issue-box blue"><h4>The two target sites</h4><p>Trammell Crow is targeting a <strong>125-acre site at 8908 Gas House Pike</strong> and a <strong>106-acre site at 6900 Linganore Road</strong> (annexed in 2023, previously the Mercer family farm, now sold to Trammell Crow). Both are near the Monocacy River. Total: 231 acres.</p></div>
+    <div class="issue-box blue"><h4>The warehouse backup plan</h4><p>Trammell Crow already had a city-approved warehouse plan for the Gas House Pike site. In March 2026, they received a one-year extension on that warehouse approval — keeping their options open while the data center text amendment is pending. If the LMC amendment fails, they build a warehouse. If it passes, they build a data center.</p></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="ci-s4">
+    <div class="section-eyebrow">04 — The loophole</div>
+    <h2>The annexation risk nobody closed</h2>
+    <p>This is the structural danger that makes the city and county stories inseparable.</p>
+    <div class="issue-box"><h4>How the loophole works</h4><p>The county's CDI-OZ restricts data centers to a 2,615-acre boundary around Adamstown. But a developer can seek annexation of a parcel into City of Frederick limits — and then pursue approval under city code instead of county zoning. The city and county are developing their rules on separate, inconsistent tracks with no unified framework. The gap between them is the loophole.</p></div>
+    <div class="issue-box"><h4>The Linganore Road precedent</h4><p>The 106-acre Linganore Road parcel was annexed into the City of Frederick in 2023 — before the CDI-OZ existed. It is now a candidate for a data center under the proposed city LMC amendment, on land that was never part of any county public debate about the overlay zone.</p></div>
+    <div class="issue-box"><h4>No unified framework exists</h4><p>The county created the CDI-OZ under county zoning. The city is separately considering an LMC text amendment under city code. There is no intergovernmental agreement, no shared boundary protocol, and no mechanism to prevent future annexations from bypassing the county's restrictions entirely.</p></div>
+    <div class="callout">
+      <h3>Bottom line</h3>
+      <p>The county spent most of 2025 in a contentious public process to define where data centers can go. A motivated developer can sidestep the entire result by annexing a parcel into the city and pushing through a city-level approval instead. Until the city passes its own restrictions — or the city and county align their frameworks — the CDI-OZ boundary has a hole in it.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="ci-s5">
+    <div class="section-eyebrow">05 — Current status</div>
+    <h2>Where things stand — June 2026</h2>
+    <div class="timeline">
+      <div class="titem"><div class="tdate">2022</div><div class="ttext"><strong>City planning staff rule</strong> data centers are unpermitted in city code. Recommend text amendment. Council does nothing.</div></div>
+      <div class="titem amber"><div class="tdate">August 2025</div><div class="ttext"><strong>Council member Nash</strong> drafts text amendment to define data center use categories in city code. Withdraws it.</div></div>
+      <div class="titem blue"><div class="tdate">December 11, 2025</div><div class="ttext"><strong>Trammell Crow files LMC text amendment</strong> through attorney Bruce Dean — described as identical to Nash's August draft — targeting Gas House Pike (125 acres) and Linganore Road (106 acres).</div></div>
+      <div class="titem red"><div class="tdate">December 23, 2025</div><div class="ttext"><strong>County Council votes 5-2</strong> on CDI-OZ map — same week as city LMC filing. Two parallel tracks, no coordination.</div></div>
+      <div class="titem red"><div class="tdate">May 11, 2026</div><div class="ttext"><strong>Nash fined $1,000</strong> by Frederick City Ethics Commission — second violation in four years. Vistra Corp. lobbying conflict.</div></div>
+      <div class="titem amber"><div class="tdate">June 2026</div><div class="ttext"><strong>LMC text amendment still pending.</strong> Data centers remain prohibited under current city code. Trammell Crow has warehouse backup approval extended one year.</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-eyebrow">Sources</div>
+    <h2>City story — primary sources</h2>
+    <ul class="links-list">
+      <li><a href="https://cityoffrederick.granicus.com/MetaViewer.php?view_id=12&meta_id=195532" target="_blank">↗ City of Frederick — LMC text amendment filing<span class="link-meta">cityoffrederick.granicus.com</span></a></li>
+      <li><a href="https://www.yahoo.com/news/articles/updated-plans-emerge-data-centers-045900495.html" target="_blank">↗ Frederick News-Post — "Plans emerge for data centers on 231 acres near Monocacy River" (Dec. 25, 2025)<span class="link-meta">Trammell Crow Gas House Pike and Linganore Road sites</span></a></li>
+      <li><a href="https://www.yahoo.com/news/articles/frederick-city-decision-2022-placed-164800226.html" target="_blank">↗ Frederick News-Post — "City decision in 2022 placed hold on new data centers" (Dec. 27, 2025)<span class="link-meta">The 2022 legal gap and LMC amendment history</span></a></li>
+      <li><a href="https://aminerdetail.com/katie-nash-ethics-violations-frederick-data-center/" target="_blank">↗ Aminer Detail — "Katie Nash Fined $1,000 in Frederick Data Center Ethics Ruling" (May 15, 2026)<span class="link-meta">Nash ethics violation, Vistra Corp. lobbying, text amendment history</span></a></li>
+      <li><a href="https://www.fredericknewspost.com/news/economy_and_business/trammell-crow-gets-one-year-extension-on-gas-house-pike-warehouse-plan-approval/article_45b95f09-2da1-5f8d-8ed6-7ee138dc46b6.html" target="_blank">↗ Frederick News-Post — Trammell Crow warehouse extension (March 2026)<span class="link-meta">Backup warehouse plan while LMC amendment pending</span></a></li>
+      <li><a href="https://frederickcountymd.gov/9128/Critical-Digital-Infrastructure-Overlay-" target="_blank">↗ Frederick County — CDI Overlay Zone official page<span class="link-meta">All resolutions, ordinances, hearing videos</span></a></li>
     </ul>
   </div>
 
-  <div class="bg-blue-500 text-white rounded-2xl shadow-lg p-6 mb-8">
-    <h2 class="text-xl font-bold mb-4">🧠 Strategic Edge</h2>
-    <ul class="space-y-2 text-sm">
-      <li>• Modular, multi-chain, legally aware</li>
-      <li>• Built for founders, traders, and reformers</li>
-      <li>• Powered by Harmonic Alpha™ systems</li>
-      <li>• Designed to feel like cheating—but it’s just optimized</li>
-    </ul>
+  <div class="page-footer">
+    <p>Part 2 of 2 — City of Frederick Story</p>
+    <button class="other-page-link" onclick="showPage('county')">← Read Part 1: The County CDI Story</button>
   </div>
 
-  <p class="text-2xl font-bold mt-12 text-center" style="color: #ffffff;">
-    Efficiency isn’t optional — it’s the edge.
-  </p>
+</div>
+</div>
 
-  <footer class="mt-16 text-center text-sm text-gray-800">
-    <p class="font-bold">Harmonic Alpha LLC</p>
-    <p>3200 Centennial Way, T03</p>
-    <p>Frederick, MD 21704</p>
-    <p><a href="mailto:Lifecrane@gmail.com" class="underline hover:text-blue-600">Lifecrane@gmail.com</a></p>
-    <p><a href="tel:+1-240-389-0775" class="underline hover:text-blue-600">(240) 389-0775</a></p>
-  </footer>
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.topnav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+showPage('hub');
+</script>
 </body>
 </html>
-
-
