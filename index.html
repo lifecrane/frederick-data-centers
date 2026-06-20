@@ -12,6 +12,7 @@
     --blue: #378ADD; --blue-bg: #E6F1FB; --blue-text: #185FA5;
     --green: #639922; --green-bg: #EAF3DE; --green-text: #3B6D11;
     --teal: #1D9E75; --teal-bg: #E1F5EE; --teal-text: #085041;
+    --purple: #7C5CBF; --purple-bg: #F0EBFA; --purple-text: #4F3A85;
     --gray-bg: #F5F5F3; --border: #E0DED8; --border-strong: #C8C6C0;
     --text: #1a1a18; --text2: #4a4a47; --text3: #7a7a76;
     --radius: 10px; --radius-lg: 16px;
@@ -41,13 +42,16 @@
 
   /* BIG BUTTONS */
   .hub-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 2rem 0; }
+  .hub-buttons.three { grid-template-columns: 1fr 1fr 1fr; }
   .hub-btn { border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; cursor: pointer; text-align: left; background: #fff; transition: all 0.15s; font-family: var(--font); }
   .hub-btn:hover { border-color: var(--text); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
   .hub-btn.county { border-left: 4px solid var(--red); }
   .hub-btn.city { border-left: 4px solid var(--blue); }
+  .hub-btn.legal { border-left: 4px solid var(--purple); }
   .hub-btn .btn-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
   .hub-btn.county .btn-label { color: var(--red); }
   .hub-btn.city .btn-label { color: var(--blue); }
+  .hub-btn.legal .btn-label { color: var(--purple); }
   .hub-btn h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
   .hub-btn p { font-size: 13px; color: var(--text2); line-height: 1.5; }
   .hub-btn .arrow { font-size: 18px; margin-top: 10px; color: var(--text3); }
@@ -84,6 +88,7 @@
   .titem.amber::before { border-color: var(--amber); background: var(--amber-bg); }
   .titem.blue::before { border-color: var(--blue); background: var(--blue-bg); }
   .titem.green::before { border-color: var(--green); background: var(--green-bg); }
+  .titem.purple::before { border-color: var(--purple); background: var(--purple-bg); }
   .tdate { font-size: 11px; font-weight: 600; color: var(--text3); margin-bottom: 2px; }
   .ttext { font-size: 14px; color: var(--text2); line-height: 1.6; }
   .ttext strong { color: var(--text); font-weight: 600; }
@@ -93,6 +98,7 @@
   .issue-box.blue { border-left-color: var(--blue); }
   .issue-box.amber { border-left-color: var(--amber); }
   .issue-box.teal { border-left-color: var(--teal); }
+  .issue-box.purple { border-left-color: var(--purple); }
   .issue-box h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
   .issue-box p { font-size: 13px; color: var(--text2); line-height: 1.65; margin: 0; }
 
@@ -102,6 +108,7 @@
   .pill.blue { background: var(--blue-bg); color: var(--blue-text); }
   .pill.amber { background: var(--amber-bg); color: var(--amber-text); }
   .pill.green { background: var(--green-bg); color: var(--green-text); }
+  .pill.purple { background: var(--purple-bg); color: var(--purple-text); }
 
   /* VOTE BAR */
   .vote-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
@@ -152,6 +159,17 @@
   .ethics-box p { font-size: 13px; color: #5a3a08; line-height: 1.65; margin-bottom: 0.5rem; }
   .ethics-box p:last-child { margin: 0; }
 
+  /* LEGAL BOX (purple variant, for the new Legal Challenges page) */
+  .legal-box { background: var(--purple-bg); border: 1px solid #D4C5F0; border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .legal-box h3 { font-size: 15px; font-weight: 600; color: var(--purple-text); margin-bottom: 0.5rem; }
+  .legal-box p { font-size: 13px; color: #3a2a5c; line-height: 1.65; margin-bottom: 0.5rem; }
+  .legal-box p:last-child { margin: 0; }
+
+  /* PLACEHOLDER BOX (for sections still being researched) */
+  .placeholder-box { border: 2px dashed var(--border-strong); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin: 1rem 0; background: var(--gray-bg); }
+  .placeholder-box h4 { font-size: 14px; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+  .placeholder-box p { font-size: 13px; color: var(--text3); line-height: 1.6; margin: 0; font-style: italic; }
+
   /* SYS ITEMS */
   .sys-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.875rem 1rem; margin-bottom: 8px; display: flex; gap: 12px; }
   .sys-num { font-size: 11px; font-weight: 700; color: var(--text3); min-width: 20px; padding-top: 2px; }
@@ -165,11 +183,11 @@
   /* PAGE FOOTER */
   .page-footer { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 3rem; }
   .page-footer p { font-size: 12px; color: var(--text3); }
-  .other-page-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; color: var(--text2); background: #fff; font-family: var(--font); margin-top: 0.75rem; transition: all 0.15s; }
+  .other-page-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; color: var(--text2); background: #fff; font-family: var(--font); margin-top: 0.75rem; transition: all 0.15s; margin-right: 8px; }
   .other-page-link:hover { border-color: var(--text); color: var(--text); }
 
   @media (max-width: 560px) {
-    .hub-buttons { grid-template-columns: 1fr; }
+    .hub-buttons, .hub-buttons.three { grid-template-columns: 1fr; }
     .hero h1 { font-size: 24px; }
     .topnav-title { font-size: 12px; }
   }
@@ -184,6 +202,7 @@
     <button id="nav-hub" onclick="showPage('hub')">Overview</button>
     <button id="nav-county" onclick="showPage('county')">County story</button>
     <button id="nav-city" onclick="showPage('city')">City story</button>
+    <button id="nav-legal" onclick="showPage('legal')">Legal challenges</button>
   </div>
 </nav>
 
@@ -202,7 +221,7 @@
     </div>
   </div>
 
-  <div class="hub-buttons">
+  <div class="hub-buttons three">
     <button class="hub-btn county" onclick="showPage('county')">
       <div class="btn-label">Part 1 — County</div>
       <h3>The CDI Overlay Story</h3>
@@ -213,6 +232,12 @@
       <div class="btn-label">Part 2 — City</div>
       <h3>The City of Frederick Story</h3>
       <p>The legal gap that never got fixed, an ethics-fined council member, Trammell Crow's Gas House Pike play, and the annexation loophole.</p>
+      <div class="arrow">→</div>
+    </button>
+    <button class="hub-btn legal" onclick="showPage('legal')">
+      <div class="btn-label">Part 3 — Legal</div>
+      <h3>Legal Challenges</h3>
+      <p>The referendum's day in court, the Board of Elections' response, Katie Nash's ethics discipline, and other accountability actions in progress.</p>
       <div class="arrow">→</div>
     </button>
   </div>
@@ -231,7 +256,7 @@
       <li><span class="dot" style="background:var(--amber)"></span><div><strong>Loudoun County is the warning nobody heeded.</strong> Dominion Energy cannot meet Loudoun's data center power demand. Residential rates are going up 14%. Grid violations were anticipated in 2025. Frederick is importing the same model with none of the runway.</div></li>
       <li><span class="dot" style="background:var(--blue)"></span><div><strong>The City of Frederick still has no legal data center use category.</strong> A proposed text amendment filed by Trammell Crow's attorney in December 2025 remains pending — and a city council member was fined for ethics violations tied to her role in drafting an identical amendment.</div></li>
       <li><span class="dot" style="background:var(--blue)"></span><div><strong>The annexation loophole is real.</strong> A developer can seek annexation into the City of Frederick to escape the county's CDI-OZ boundary entirely — and the city and county have no unified framework to stop it.</div></li>
-      <li><span class="dot" style="background:var(--amber)"></span><div><strong>A referendum petition launched in January 2026.</strong> If voters approve it, the Council's 2,615-acre map is vetoed and the entire CDI-OZ process restarts from scratch.</div></li>
+      <li><span class="dot" style="background:var(--purple)"></span><div><strong>A referendum petition launched in January 2026 — and was struck down in court in June 2026.</strong> A Circuit Court judge ruled the petition's reproduction of the ordinance was inadequate and that zoning ordinances aren't subject to referendum under the county charter. The referendum committee has appealed.</div></li>
     </ul>
   </div>
 
@@ -249,6 +274,7 @@
       <div class="stat-card"><div class="stat-label">Loudoun rate hike</div><div class="stat-val">+14%</div><div class="stat-sub">residential, 2026</div></div>
       <div class="stat-card"><div class="stat-label">Original approvals</div><div class="stat-val">Dec 2021</div><div class="stat-sub">4 yrs before overlay</div></div>
       <div class="stat-card"><div class="stat-label">Nash ethics fine</div><div class="stat-val">$1,000</div><div class="stat-sub">May 2026, 2nd violation</div></div>
+      <div class="stat-card"><div class="stat-label">Referendum signers</div><div class="stat-val">20,000+</div><div class="stat-sub">certified by BOE, April 2026</div></div>
     </div>
   </div>
 
@@ -297,7 +323,7 @@
       <div class="titem blue"><div class="tdate">July 9, 2025</div><div class="ttext"><strong>Planning Commission public hearing</strong> on Council Bill 25-09. Workshops follow July 16 and 23.</div></div>
       <div class="titem amber"><div class="tdate">October 2025</div><div class="ttext"><strong>Planning Commission recommends</strong> limiting CDI-OZ to already-approved ~1,311 acres. Map forwarded to County Council.</div></div>
       <div class="titem red"><div class="tdate">December 23, 2025</div><div class="ttext"><strong>Council votes 5-2</strong> for ~2,615-acre map — nearly double the recommendation — with no public comment on the amended ordinance. Two days before Christmas.</div></div>
-      <div class="titem red"><div class="tdate">January 2026</div><div class="ttext"><strong>Referendum committee forms.</strong> A successful referendum would veto the Council's map and restart the entire CDI-OZ process.</div></div>
+      <div class="titem red"><div class="tdate">January 2026</div><div class="ttext"><strong>Referendum committee forms.</strong> A successful referendum would veto the Council's map and restart the entire CDI-OZ process. See <a href="#" onclick="showPage('legal'); return false;" style="color:var(--purple)">Legal Challenges →</a> for how this played out in court.</div></div>
     </div>
   </div>
 
@@ -407,8 +433,9 @@
   </div>
 
   <div class="page-footer">
-    <p>Part 1 of 2 — County Story</p>
+    <p>Part 1 of 3 — County Story</p>
     <button class="other-page-link" onclick="showPage('city')">Read Part 2: The City of Frederick Story →</button>
+    <button class="other-page-link" onclick="showPage('legal')">Read Part 3: Legal Challenges →</button>
   </div>
 
 </div>
@@ -446,6 +473,7 @@
       <p>The problem: Nash was simultaneously working as a <strong>paid lobbyist for Vistra Corp.</strong>, a national energy company — while sitting on the City Council and shaping data center policy. Energy generation and data center development are deeply connected industries; data centers are among the largest electricity consumers in the country.</p>
       <p>Nash's defense: "It's not the same industry. It never occurred to me there's a conflict." The Frederick City Ethics Commission disagreed and issued a $1,000 fine on May 11, 2026 — her second ethics violation, following a 2022 ruling for using her position to lobby on behalf of a firefighters union client.</p>
     </div>
+    <p style="font-size:13px"><a href="#" onclick="showPage('legal'); return false;" style="color:var(--purple)">→ Full disciplinary record and accountability tracker in Legal Challenges</a></p>
   </div>
 
   <div class="divider"></div>
@@ -505,8 +533,109 @@
   </div>
 
   <div class="page-footer">
-    <p>Part 2 of 2 — City of Frederick Story</p>
+    <p>Part 2 of 3 — City of Frederick Story</p>
     <button class="other-page-link" onclick="showPage('county')">← Read Part 1: The County CDI Story</button>
+    <button class="other-page-link" onclick="showPage('legal')">Read Part 3: Legal Challenges →</button>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PAGE 4: LEGAL CHALLENGES ═══ -->
+<div id="page-legal" class="page">
+<div class="container">
+
+  <button class="back-btn" onclick="showPage('hub')">← Back to overview</button>
+
+  <div class="hero">
+    <div class="hero-eyebrow" style="color:var(--purple)">Part 3 — Legal Challenges</div>
+    <h1>Accountability in Progress</h1>
+    <p>The referendum's day in court, the Board of Elections' response, and the disciplinary actions tied to this story so far. This page will be updated as new filings, rulings, and appeals develop.</p>
+  </div>
+
+  <div class="section" id="l-s1">
+    <div class="section-eyebrow">01 — The referendum ruling</div>
+    <h2>Circuit Court blocks the referendum — June 18, 2026</h2>
+    <p>Judge James A. Bonifant, a retired senior judge from Montgomery County sitting on the Frederick County Circuit Court, ruled on June 18, 2026 that the 2,615-acre CDI-OZ map cannot go before voters as a referendum.</p>
+    <div class="legal-box">
+      <h3>Two independent grounds for the ruling</h3>
+      <p><strong>1. Charter interpretation:</strong> The Court found Frederick County's charter — adopted in 2014 — is ambiguous as to whether zoning ordinances are subject to referendum at all. Rather than resolving that ambiguity from the ratified charter text, the Court looked to discussions among the charter's framers at a December 2011 meeting to infer their intent, concluding zoning ordinances were meant to be excluded.</p>
+      <p><strong>2. Petition form defect:</strong> The Court separately found the referendum committee's reproduction of the ordinance and zoning maps on the petition forms "fatally" inadequate — citing reduced font size and the elimination of the original map's colors, which the Court found made zone boundaries indistinguishable.</p>
+    </div>
+    <div class="issue-box purple"><h4>What the ruling did not do</h4><p>The Court did not find the committee acted in bad faith — Bonifant said the committee "worked diligently" on the referendum, and separately rejected one of the challengers' arguments (about a script used to solicit signatures) as not relevant to the outcome.</p></div>
+    <div class="issue-box purple"><h4>Who challenged the petition</h4><p>Petitioners challenging the referendum were largely companies with land inside the CDI-OZ boundary: Quantum Maryland LLC, Windridge Properties L.C., NDR Properties LLC, Frederick Data Owner LLC, and three LLCs under the Rowan Frederick name.</p></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="l-s2">
+    <div class="section-eyebrow">02 — The appeal</div>
+    <h2>The referendum committee appeals</h2>
+    <p>The Frederick County Data Center Referendum Committee filed an appeal of Bonifant's ruling. Elizabeth Bauer, the committee's lead organizer, shared a copy of the appeal publicly the night of the ruling. Because Maryland's deadline for submitting ballot language to the State Board of Elections is July 1, 2026, the appeal is on a compressed timeline.</p>
+    <div class="placeholder-box">
+      <h4>🚧 Tracking in progress</h4>
+      <p>Appellate filings, briefing schedule, and outcome will be added here as they become public.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="l-s3">
+    <div class="section-eyebrow">03 — Board of Elections response</div>
+    <h2>Emergency meeting — June 19, 2026</h2>
+    <p>The Frederick County Board of Elections held an emergency open session on June 19, 2026 to discuss the ruling. The Board <strong>declined to take further action</strong> in response to the ruling.</p>
+    <div class="issue-box purple"><h4>Why this matters</h4><p>The Board had certified the referendum petition's format as sufficient in April 2026 — before the committee collected any signatures. More than 20,000 residents relied on that certification when signing. The Court's ruling effectively overrode that certification after the fact, and the Board's decision not to pursue its own appeal leaves that tension unresolved.</p></div>
+    <p style="font-size:13px"><a href="https://drive.google.com/file/d/1xVM7kiicK-m_dGSmQ1XSL6EhIzc7UwnL/view?usp=sharing" target="_blank" style="color:var(--purple)">↗ Read the letter submitted by Joao Vieira to the Board of Elections, but it was too late(PDF)</a></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="l-s4">
+    <div class="section-eyebrow">04 — Katie Nash ethics discipline</div>
+    <h2>Council Ethics Commission fine — May 11, 2026</h2>
+    <p>Covered in full in the <a href="#" onclick="showPage('city'); return false;" style="color:var(--purple)">City Story</a> — included here as part of the broader accountability record. Frederick City Council member Katie Nash was fined $1,000 by the Frederick City Ethics Commission, her second ethics violation in four years, after drafting data center policy text while working as a paid lobbyist for Vistra Corp., a national energy company.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="l-s5">
+    <div class="section-eyebrow">05 — Other accountability actions</div>
+    <h2>Additional filings being tracked</h2>
+    <div class="placeholder-box">
+      <h4>🚧 Kai Hagen complaint — details pending</h4>
+      <p>A complaint reportedly filed by Kai Hagen regarding officials and campaign or lobbying money tied to the data center issue. Details, filing date, and outcome to be added once confirmed from a primary source.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="l-s6">
+    <div class="section-eyebrow">06 — Timeline</div>
+    <h2>Legal and accountability timeline</h2>
+    <div class="timeline">
+      <div class="titem purple"><div class="tdate">January 2026</div><div class="ttext"><strong>Referendum committee forms</strong> and begins signature collection.</div></div>
+      <div class="titem purple"><div class="tdate">April 3, 2026</div><div class="ttext"><strong>Board of Elections certifies</strong> the petition as sufficient as to format, before signature collection concludes.</div></div>
+      <div class="titem red"><div class="tdate">May 11, 2026</div><div class="ttext"><strong>Katie Nash fined $1,000</strong> by Frederick City Ethics Commission.</div></div>
+      <div class="titem purple"><div class="tdate">June 18, 2026</div><div class="ttext"><strong>Judge Bonifant rules</strong> the referendum cannot appear on the ballot. Committee announces appeal same night.</div></div>
+      <div class="titem purple"><div class="tdate">June 19, 2026</div><div class="ttext"><strong>Board of Elections holds emergency meeting</strong> and declines to take further action.</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-eyebrow">Sources</div>
+    <h2>Legal challenges — primary sources</h2>
+    <ul class="links-list">
+      <li><a href="https://www.fredericknewspost.com/news/continuing_coverage/data_centers/judge-rules-data-center-zone-referendum-cant-be-on-ballot-group-vows-appeal/article_605b6b7e-1455-5680-98d3-948ee1feeb45.html" target="_blank">↗ Frederick News-Post — "Judge rules data center zone referendum can't be on ballot; group appeals" (June 18, 2026)<span class="link-meta">Full coverage of Bonifant's ruling</span></a></li>
+      <li><a href="https://drive.google.com/file/d/1xVM7kiicK-m_dGSmQ1XSL6EhIzc7UwnL/view?usp=sharing" target="_blank">↗ Letter to the Frederick County Board of Elections (June 19, 2026)<span class="link-meta">Submitted ahead of the emergency meeting on the referendum ruling</span></a></li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <p>Part 3 of 3 — Legal Challenges · Updated as new filings develop</p>
+    <button class="other-page-link" onclick="showPage('county')">← Read Part 1: The County CDI Story</button>
+    <button class="other-page-link" onclick="showPage('city')">← Read Part 2: The City Story</button>
   </div>
 
 </div>
